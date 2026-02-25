@@ -1,3 +1,5 @@
 *.o
 Lab_*/*
+!Lab_*/
 !Lab_*/*.asm
+!Lab_*/Makefile
