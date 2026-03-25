@@ -24,13 +24,17 @@ run: build
 
 debug: build
 	@echo "--- GDB Dashboard Debug $(TARGET1) ---"
-	gdb -ex "dashboard stack -n 10"              \
-	    -ex "starti"                              \
-	    -ex "dashboard memory watch &buffer 32"   \
-	    -ex "dashboard memory watch &X 4"         \
-	    -ex "dashboard expressions watch (char[11])buffer" \
-	    -ex "dashboard expressions watch *(int*)&X"        \
-	    ./$(TARGET1)
+	gdb -ex "dashboard stack -n 10" \
+		-ex "starti" \
+		-ex "dashboard memory watch &A 64" \
+		-ex "dashboard expressions watch *(short*)&A" \
+		-ex "dashboard expressions watch *(char*)&B" \
+		-ex "dashboard expressions watch *(char*)&C_val" \
+		-ex "dashboard expressions watch *(char*)&D" \
+		-ex "dashboard expressions watch *(short*)&E" \
+		-ex "dashboard expressions watch *(int*)&X" \
+		-ex "dashboard expressions watch (char[11])buffer" \
+		./$(TARGET1)
 
 clean:
 	rm -f *.o $(TARGET1)
